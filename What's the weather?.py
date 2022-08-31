@@ -5,15 +5,18 @@
 
 # Here I will take input to determine the language course of the program
 class LanguageChoice:
-    def __int__(self):
-        celsius = None
-        fahrenheit = None
-
-    def prompt(self):
+    def __init__(self):
         print("Para Español presione 1. \nFor English, press 2.")
         language_choice = input()
+        self.prompt(language_choice)
+        # celsius = None
+        # fahrenheit = None
 
-        if language_choice == '1':
+    def prompt(self, language):
+        # print("Para Español presione 1. \nFor English, press 2.")
+        # language_choice = input()
+
+        if language == '1':
             self.spanish()
         # else:
         #     self.english()
@@ -38,7 +41,7 @@ class LanguageChoice:
             # Now we can do the math conversion from Fahrenheit to Celsius
             # C = 5/9(F-32)
             celsius = (temp_val - 32) * 5/9
-            self.result(celsius, "Celsius")
+            self.result(celsius, "Celsius", 'spanish')
             # return celsius
 
         elif temp_preference == '2':
@@ -55,17 +58,23 @@ class LanguageChoice:
 
             # Now can do the math °F = (°C × 9/5) + 32
             fahrenheit = (temp_val * 9/5) + 32
-            self.result(fahrenheit, "Fahrenheit")
+            self.result(fahrenheit, "Fahrenheit", 'spanish')
             # return fahrenheit
 
         elif temp_preference != '1' or temp_preference != '2':
             print("La tecla presionada es incorrecta.")
             self.spanish()
+
     # def english(self):
 
-    def result(self, temperature: float, type_temp: str):
-        return print(f"Tu temperatura en {type_temp} es: {temperature} {type_temp}")
+    def result(self, temperature: float, type_temp: str, language: str):
+        if language == "spanish":
+            return print(f"Tu temperatura en {type_temp} es: {temperature} {type_temp}")
+
+        elif language == "english":
+            return print(f"Your temperature in {type_temp} is: {temperature} {type_temp}")
 
 
 entry_prompt = LanguageChoice()
-entry_prompt.prompt()
+print(entry_prompt.__init__())
+
