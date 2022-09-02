@@ -18,8 +18,11 @@ class LanguageChoice:
 
         if language == '1':
             self.spanish()
-        # else:
-        #     self.english()
+        elif language == '2':
+            self.english()
+        else:
+            self.__init__()
+
 
     def spanish(self):
         print("Hola! Hoy le ayudare a saber el clima de hoy deacuerdo con "
@@ -65,15 +68,74 @@ class LanguageChoice:
             print("La tecla presionada es incorrecta.")
             self.spanish()
 
-    # def english(self):
+    def english(self):
+
+        print("Hi! I'll help you know the weather based on your preference, either Celsius or Fahrenheit ")
+        temp_preference = input("Please choose your preferred conversion. Press 1 to convert to Celsius or "
+                                "Press 2 to convert to Fahrenheit: ")
+
+        if temp_preference == '1':
+            # This means they want to convert to Celsius
+
+            temp_val = input("Please write tour temperature in Celsius to convert to Fahrenheit: ")
+
+            temp_val.lower()
+            for i in temp_val:
+                if 'a' <= i <= 'z':
+                    del i
+            temp_val = int(temp_val)
+
+            # Now we can do the math conversion from Fahrenheit to Celsius
+            # C = 5/9(F-32)
+            celsius = (temp_val - 32) * 5 / 9
+            self.result(celsius, "Celsius", 'english')
+
+        elif temp_preference == '2':
+            # This means they want to convert to Fahrenheit
+            temp_val = input("Please write tour temperature in Fahrenheit to convert to Celsius: ")
+
+            temp_val.lower()
+            for i in temp_val:
+                if 'a' <= i <= 'z':
+                    del i
+
+            temp_val = int(temp_val)
+
+            # Now can do the math °F = (°C × 9/5) + 32
+            fahrenheit = (temp_val * 9 / 5) + 32
+            self.result(fahrenheit, "Fahrenheit", 'english')
+            # return fahrenheit
+
+        elif temp_preference != '1' or temp_preference != '2':
+            print("Wrong key.")
+            self.english()
 
     def result(self, temperature: float, type_temp: str, language: str):
         if language == "spanish":
-            return print(f"Tu temperatura en {type_temp} es: {temperature} {type_temp}")
+            print(f"Tu temperatura en {type_temp} es: {temperature} {type_temp}")
+
+            continue_temp = input("Te gustaria segir convirtiendo temperaturas correctamente? "
+                                  "Presiona 1 si quieres continuar, o Presiona 2 para terminar: ")
+            if continue_temp == '1':
+                return self.__init__()
+            else:
+                return self.end_conversion("spanish")
 
         elif language == "english":
-            return print(f"Your temperature in {type_temp} is: {temperature} {type_temp}")
+            print(f"Your temperature in {type_temp} is: {temperature} {type_temp}")
 
+            continue_temp = input("Would you like to continue playing? Press 1 for Yes or Press 2 for No: ")
+            if continue_temp == '1':
+                return self.__init__()
+            else:
+                return self.end_conversion("english")
+
+    def end_conversion(self, language: str):
+        if language == 'english':
+            print("Thanks for doing some conversions with me! Bye bye :)")
+        else:
+            print("Gracias for hacer matematicas y cambiar averiguar la temperatura conmigo! Adios :)")
+        return
 
 entry_prompt = LanguageChoice()
 print(entry_prompt.__init__())
