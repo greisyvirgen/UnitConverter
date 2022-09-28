@@ -23,7 +23,6 @@ class LanguageChoice:
         else:
             self.__init__()
 
-
     def spanish(self):
         print("Hola! Hoy le ayudare a saber el clima de hoy deacuerdo con "
               "su manera preferida, ya sea Celsius o Fahrenheit ")
