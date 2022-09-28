@@ -26,43 +26,40 @@ class LanguageChoice:
 
     def spanish(self):
         print("Hola! Hoy le ayudare a saber el clima de hoy deacuerdo con "
-              "su manera preferida, ya sea Celsius or Fahrenheit ")
+              "su manera preferida, ya sea Celsius o Fahrenheit ")
         temp_preference = input("Porfavor elija de que manera le gustaria saber la temperatura. "
                     "Presione 1 para Celsius o Presione 2 para Fahrenheit: ")
 
         if temp_preference == '1':
             # This means they want to convert to Celsius
-            temp_val = input("Porfavor escriba la temperatura que quiere convertir de "
-                  "Celsius a Fahrenheit: ")
+            temp_val = input("Porfavor escriba la temperatura en Fahrenheit: ")
 
             temp_val.lower()
+
+            # This checks if they typed in any
+            # words, so that they're not accounted for
             for i in temp_val:
                 if 'a' <= i <= 'z':
                     del i
-            temp_val = int(temp_val)
 
             # Now we can do the math conversion from Fahrenheit to Celsius
             # C = 5/9(F-32)
-            celsius = (temp_val - 32) * 5/9
+            celsius = (int(temp_val) - 32) * 5/9
             self.result(celsius, "Celsius", 'spanish')
-            # return celsius
 
         elif temp_preference == '2':
             # This means they want to convert to Fahrenheit
-            temp_val = input("Porfavor escriba la temperatura que quiere convertir de "
-                             "Fahrenheit a Celsius: ")
+            temp_val = input("Porfavor escriba la temperatura en Celsius: ")
 
             temp_val.lower()
+
             for i in temp_val:
                 if 'a' <= i <= 'z':
                     del i
 
-            temp_val = int(temp_val)
-
             # Now can do the math °F = (°C × 9/5) + 32
-            fahrenheit = (temp_val * 9/5) + 32
+            fahrenheit = (int(temp_val) * 9/5) + 32
             self.result(fahrenheit, "Fahrenheit", 'spanish')
-            # return fahrenheit
 
         elif temp_preference != '1' or temp_preference != '2':
             print("La tecla presionada es incorrecta.")
@@ -77,32 +74,29 @@ class LanguageChoice:
         if temp_preference == '1':
             # This means they want to convert to Celsius
 
-            temp_val = input("Please write tour temperature in Celsius to convert to Fahrenheit: ")
+            temp_val = input("Please write your temperature in Fahrenheit: ")
 
             temp_val.lower()
             for i in temp_val:
                 if 'a' <= i <= 'z':
                     del i
-            temp_val = int(temp_val)
 
             # Now we can do the math conversion from Fahrenheit to Celsius
             # C = 5/9(F-32)
-            celsius = (temp_val - 32) * 5 / 9
+            celsius = (int(temp_val) - 32) * 5 / 9
             self.result(celsius, "Celsius", 'english')
 
         elif temp_preference == '2':
             # This means they want to convert to Fahrenheit
-            temp_val = input("Please write tour temperature in Fahrenheit to convert to Celsius: ")
+            temp_val = input("Please write tour temperature in Celsius: ")
 
             temp_val.lower()
             for i in temp_val:
                 if 'a' <= i <= 'z':
                     del i
 
-            temp_val = int(temp_val)
-
             # Now can do the math °F = (°C × 9/5) + 32
-            fahrenheit = (temp_val * 9 / 5) + 32
+            fahrenheit = (int(temp_val) * 9 / 5) + 32
             self.result(fahrenheit, "Fahrenheit", 'english')
             # return fahrenheit
 
@@ -133,10 +127,9 @@ class LanguageChoice:
     def end_conversion(self, language: str):
         if language == 'english':
             print("Thanks for doing some conversions with me! Bye bye :)")
-        else:
-            print("Gracias for hacer matematicas y cambiar averiguar la temperatura conmigo! Adios :)")
+        elif language == "spanish":
+            print("Gracias por averiguar la temperatura conmigo! Adios :)")
         return
 
-entry_prompt = LanguageChoice()
-print(entry_prompt.__init__())
 
+print(LanguageChoice())
